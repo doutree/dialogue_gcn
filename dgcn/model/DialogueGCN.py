@@ -45,7 +45,7 @@ class DialogueGCN(nn.Module):
             node_features, data["text_len_tensor"], data["speaker_tensor"], self.wp, self.wf,
             self.edge_type_to_idx, self.edge_att, self.device)
 
-        graph_out = self.gcn(features, edge_index, edge_norm, edge_type)
+        graph_out = self.gcn(features, edge_index,  edge_type)
 
         return graph_out, features
 
