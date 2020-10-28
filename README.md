@@ -14,9 +14,9 @@ You can run the whole process very easily. Take the IEMOCAP corpus for example:
 ./scripts/iemocap.sh train
 ```
 
-## Performance Comparision
-
--|Dataset|Weighted F1
-:-:|:-:|:-:
-Original|IEMOCAP|64.18%
-This Implementation|IEMOCAP|64.10%
+## Requirements
+* Python 3
+* PyTorch 1.0
+* PyTorch Geometric 1.4.3
+* Pandas 0.23
+* Scikit-Learn 0.20

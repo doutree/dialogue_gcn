@@ -10,8 +10,8 @@ class GCN(nn.Module):
         self.conv1 = RGCNConv(g_dim, h1_dim, self.num_relations, num_bases=30)
         self.conv2 = GraphConv(h1_dim, h2_dim)
 
-    def forward(self, node_features, edge_index,  edge_type):
-        x = self.conv1(node_features, edge_index, edge_type)
+    def forward(self, node_features, edge_index, edge_norm, edge_type):
+        x = self.conv1(node_features, edge_index, edge_type, edge_norm=edge_norm)
         x = self.conv2(x, edge_index)
 
         return x

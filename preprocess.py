@@ -17,7 +17,7 @@ def split():
 
     train, dev, test = [], [], []
     dev_size = int(len(trainVids) * 0.1)
-    trainVids=list(trainVids)
+    # trainVids=list(trainVids)
     train_vids, dev_vids = trainVids[dev_size:], trainVids[:dev_size]
 
     for vid in tqdm(train_vids, desc="train"):
