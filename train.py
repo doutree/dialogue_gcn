@@ -11,8 +11,9 @@ def main(args):
     dgcn.utils.set_seed(args.seed)
 
     # load data
-    log.debug("Loading data from '%s'." % args.data)
+    log.debug("Long data from '%s'." % args.data)
     data = dgcn.utils.load_pkl(args.data)
+    log.info(len(data))
     log.info("Loaded data.")
 
     trainset = dgcn.Dataset(data["train"], args.batch_size)

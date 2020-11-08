@@ -83,21 +83,39 @@ class Coach:
 
     def evaluate(self, test=False):
         dataset = self.testset if test else self.devset
+
+        # log.info(dataset.samples[0].vid)
+        # log.info(dataset.samples[0].sentence)
+        # log.info(dataset.samples[0].label)
+
         self.model.eval()
         with torch.no_grad():
             golds = []
             preds = []
             for idx in tqdm(range(len(dataset)), desc="test" if test else "dev"):
                 data = dataset[idx]
+
+                # if test:
+                #     log.info(dataset.samples[idx].vid)
+                #     log.info(dataset.samples[idx].sentence)
+                #     log.info(data["label_tensor"])
+
                 golds.append(data["label_tensor"])
                 for k, v in data.items():
                     data[k] = v.to(self.args.device)
                 y_hat = self.model(data)
+
+                # if test:
+                #     log.info(y_hat.detach().to("cpu"))
+
                 preds.append(y_hat.detach().to("cpu"))
 
             golds = torch.cat(golds, dim=-1).numpy()
             preds = torch.cat(preds, dim=-1).numpy()
             f1 = metrics.f1_score(golds, preds, average="weighted")
+
+        # log.info(golds)
+        # log.info(preds)
 
         return f1
 
