@@ -262,7 +262,7 @@ if __name__ == '__main__':
     n_epochs   = args.epochs
     batch_size = args.batch_size
 
-    D_m = 100
+    D_m = 1024
     D_g = 150
     D_p = 150
     D_e = 100
@@ -344,8 +344,7 @@ if __name__ == '__main__':
 
     optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.l2)
 
-    train_loader, valid_loader, test_loader = get_IEMOCAP_loaders(valid=0.0,
-                                                                  batch_size=batch_size,
+    train_loader, valid_loader, test_loader = get_IEMOCAP_loaders(batch_size=batch_size,
                                                                   num_workers=0)
 
     best_fscore, best_loss, best_label, best_pred, best_mask = None, None, None, None, None

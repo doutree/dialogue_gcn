@@ -39,7 +39,7 @@ class IEMOCAPRobertaCometDataset(Dataset):
 
     def collate_fn(self, data):
         dat = pd.DataFrame(data)
-        return [pad_sequence(dat[i]) if i < 14 else pad_sequence(dat[i], True) if i < 16 else dat[i].tolist() for i in
+        return [pad_sequence(dat[i]) if i < 4 else pad_sequence(dat[i], True) if i < 6 else dat[i].tolist() for i in
                 dat]
 
 
